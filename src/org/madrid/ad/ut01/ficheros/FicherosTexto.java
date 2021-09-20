@@ -18,7 +18,10 @@ import org.madrid.ad.ut01.ficheros.interfaces.InterfazFicherosTexto;
  */
 public class FicherosTexto implements InterfazFicherosTexto {
 
-
+	@Override
+	public void leer(String rutaFichero) {
+	}
+	
 	@Override
 	public int contarCaracteres(String rutaFichero) {
 		int num=0;
