@@ -63,7 +63,7 @@ public interface InterfazFicherosTexto {
 	 *
 	 * @param rutaFichero
 	 */
-	public int palabraMasLarga(String rutaFichero);
+	public String palabraMasLarga(String rutaFichero);
 	
 	/**
 	 * 	

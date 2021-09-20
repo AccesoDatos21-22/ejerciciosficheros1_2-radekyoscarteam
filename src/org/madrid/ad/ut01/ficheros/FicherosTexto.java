@@ -48,9 +48,34 @@ public class FicherosTexto implements InterfazFicherosTexto {
 	}
 
 	@Override
-	public int palabraMasLarga(String rutaFichero) {
-		// TODO Auto-generated method stub
-		return 0;
+	public String palabraMasLarga(String rutaFichero) {
+		File file = new File(rutaFichero);
+		String linea,palabraIntermedia="";
+		
+		try(BufferedReader fr= new BufferedReader(new FileReader(file))) {
+			if(!file.exists()) {
+				System.out.println("El fichero no existe"); 
+				return palabraIntermedia;
+			}
+			
+			while(true) {
+			linea=fr.readLine();
+			if(linea==null) return palabraIntermedia;
+			String[]lineaAux=linea.split("\\s|\\.|,");
+			for(String palabra: lineaAux) {
+				if(palabraIntermedia==null) palabraIntermedia=palabra;
+				if(palabraIntermedia.length()<=palabra.length()) palabraIntermedia=palabra;
+			}
+				
+			
+			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return palabraIntermedia;
 	}
 
 	@Override
@@ -61,39 +86,8 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public HashMap<Character,Integer> frecuenciaLetras(String rutaFichero) {
-		HashMap<Character,Integer> diccionario=new HashMap<Character, Integer>();
-		File fichero = new File(rutaFichero);
-		try (FileReader fr = new FileReader(fichero)) {
-			if (!fichero.exists()) {
-				System.out.println("El archivo no existe.");
-				return null;
-			}
-			
-			while (true) {
-				int letraNumerica = fr.read();
-				if (letraNumerica == -1) break;
-				char letra=(char)letraNumerica;
-				if(!diccionario.containsKey(letra)) {
-					diccionario.put(letra,1);
-
-				}else {				
-				int valor =diccionario.get(letra)+1;
-//				diccionario.remove(letra);
-				diccionario.put(letra,valor);
-					
-				}
-				
-					
-				}
-
-			
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-
 		
-		return diccionario;
+		return null;
 	}
 
 }

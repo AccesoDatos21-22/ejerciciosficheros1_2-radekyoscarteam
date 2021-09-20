@@ -9,9 +9,10 @@ public class Main {
 			FicherosTexto ejercicios = new FicherosTexto();
 //			System.out.println(ejercicios.contarCaracteres(ruta));
 //			System.out.println(ejercicios.contarPalabras(ruta));
+			System.out.println(ejercicios.palabraMasLarga(ruta));
 			
 //			System.out.println(ejercicios.frecuenciaLetras(ruta));
-			ejercicios.frecuenciaLetras(ruta).forEach((k,v)->System.out.println("letra: "+k+", valor: "+ v));
+//			ejercicios.frecuenciaLetras(ruta).forEach((k,v)->System.out.println("letra: "+k+", valor: "+ v));
 
 	}
 
