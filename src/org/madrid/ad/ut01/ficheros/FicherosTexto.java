@@ -22,6 +22,35 @@ public class FicherosTexto implements InterfazFicherosTexto {
 	public void leer(String rutaFichero) {
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public int contarCaracteres(String rutaFichero) {
 		int num=0;
