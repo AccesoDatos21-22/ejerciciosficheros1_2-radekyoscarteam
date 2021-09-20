@@ -1,6 +1,8 @@
 package org.madrid.ad.ut01.ficheros;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 import org.madrid.ad.ut01.ficheros.interfaces.InterfazFicherosTexto;
@@ -28,19 +30,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public int contarLineas(String rutaFichero) {
-		int num=0;
-		File fichero=new File(rutaFichero);
-		try {
-			BufferedReader br=new BufferedReader(new FileReader(fichero));
-			String linea=br.readLine();
-			while (linea!=null){
-				num++;
-				linea=br.readLine();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return num;
+		return  0;
 	}
 
 	@Override
@@ -51,8 +41,29 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public int palabrasPentavocalica(String rutaFichero) {
-		// TODO Auto-generated method stub
-		return 0;
+		int num=0;
+		File archivo=new File(rutaFichero);
+		ArrayList<String> lista=new ArrayList<String>();
+		try {
+			BufferedReader br=new BufferedReader(new FileReader(archivo));
+			String linea=br.readLine();
+			while (linea!=null){
+				boolean contiene=true;
+				String[] palabras=linea.split(" ");
+				String[]vocales={"a","e","i","o","u"};
+				for (int i = 0; i < palabras.length; i++) {
+					for (String vocal:vocales) {
+						if(!palabras[i].contains(vocal))contiene=false;
+					}
+					if(contiene) lista.add(palabras[i]);
+				}
+				linea=br.readLine();
+			}
+			lista.forEach(System.out::println);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return num;
 	}
 
 	@Override
