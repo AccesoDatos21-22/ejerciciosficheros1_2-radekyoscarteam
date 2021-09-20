@@ -2,6 +2,8 @@ package org.madrid.ad.ut01.ficheros;
 
 import org.madrid.ad.ut01.ficheros.interfaces.InterfazFicherosTexto;
 
+import java.io.*;
+
 /**
  * 
  * @author Escribe_aqui_tu_nombre
@@ -14,8 +16,18 @@ public class FicherosTexto implements InterfazFicherosTexto{
 
 	@Override
 	public void leer(String rutaFichero) {
-		// TODO Auto-generated method stub
-		
+		File archivo=new File(rutaFichero);
+		try {
+			BufferedReader br=new BufferedReader(new FileReader(archivo));
+			String linea=br.readLine();
+			while (linea != null) {
+				System.out.println(linea);
+				linea=br.readLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
