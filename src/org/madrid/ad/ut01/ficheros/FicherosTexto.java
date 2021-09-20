@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-
 import org.madrid.ad.ut01.ficheros.interfaces.InterfazFicherosTexto;
 
 /**
@@ -18,29 +17,35 @@ import org.madrid.ad.ut01.ficheros.interfaces.InterfazFicherosTexto;
  */
 public class FicherosTexto implements InterfazFicherosTexto {
 
+	@Override
+	public void leer(String rutaFichero) {
+
+		File fichero = new File(rutaFichero);
+		try (FileReader fr = new FileReader(fichero)) {
+			if (!fichero.exists()) {
+				System.out.println("El archivo no existe.");
+				return;
+			}
+
+			while (true) {
+				int letra = fr.read();
+				if (letra == -1)
+					break; // Si devuelve -1 significa que no quedan caracteres por leer
+				System.out.print((char) letra);
+
+			}
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+	}
 
 	@Override
 	public int contarCaracteres(String rutaFichero) {
-		int num=0;
-		File fichero=new File(rutaFichero);
-		try {
-			FileReader fr=new FileReader(fichero);
-			if(!fichero.exists()){
-				System.out.println("El fichero no existe");
-			}else{
-				while(true){
-					int letra=fr.read();
-					if(letra == -1) break; ////Si devuelve -1 significa que no quedan caracteres por leer
-					num++;
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return num;
+		return 0;
+		
 	}
-
-
 
 	@Override
 	public int contarLineas(String rutaFichero) {
