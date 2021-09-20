@@ -16,24 +16,28 @@ public class FicherosTexto implements InterfazFicherosTexto{
 
 	@Override
 	public void leer(String rutaFichero) {
-		File archivo=new File(rutaFichero);
-		try {
-			BufferedReader br=new BufferedReader(new FileReader(archivo));
-			String linea=br.readLine();
-			while (linea != null) {
-				System.out.println(linea);
-				linea=br.readLine();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
 	}
 
 	@Override
 	public int contarCaracteres(String rutaFichero) {
-		// TODO Auto-generated method stub
-		return 0;
+		int num=0;
+		File fichero=new File(rutaFichero);
+		try {
+			FileReader fr=new FileReader(fichero);
+			if(!fichero.exists()){
+				System.out.println("El fichero no existe");
+			}else{
+				while(true){
+					int letra=fr.read();
+					if(letra == -1) break; ////Si devuelve -1 significa que no quedan caracteres por leer
+					num++;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return num;
 	}
 
 	@Override
