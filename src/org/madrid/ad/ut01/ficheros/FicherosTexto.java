@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.util.HashMap;
 
 import org.madrid.ad.ut01.ficheros.interfaces.InterfazFicherosTexto;
 
@@ -37,31 +37,8 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public int contarPalabras(String rutaFichero) {
-		File file = new File(rutaFichero);
-		String linea;
-		int num=0;
-		try(BufferedReader fr= new BufferedReader(new FileReader(file))) {
-			if(!file.exists()) {
-				System.out.println("El fichero no existe"); 
-				return 0;
-			}
-			while(true) {
-			linea=fr.readLine();
-			if(linea==null) return num;
-			String[]lineaAux=linea.split(" ");
-			for(String palabra: lineaAux) {
-				num++;
-			}
-				
-			
-			}
-			
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return num;
+	
+		return 0;
 	}
 
 	@Override
@@ -83,9 +60,40 @@ public class FicherosTexto implements InterfazFicherosTexto {
 	}
 
 	@Override
-	public int frecuenciaLetras(String rutaFichero) {
-		// TODO Auto-generated method stub
-		return 0;
+	public HashMap<Character,Integer> frecuenciaLetras(String rutaFichero) {
+		HashMap<Character,Integer> diccionario=new HashMap<Character, Integer>();
+		File fichero = new File(rutaFichero);
+		try (FileReader fr = new FileReader(fichero)) {
+			if (!fichero.exists()) {
+				System.out.println("El archivo no existe.");
+				return null;
+			}
+			
+			while (true) {
+				int letraNumerica = fr.read();
+				if (letraNumerica == -1) break;
+				char letra=(char)letraNumerica;
+				if(!diccionario.containsKey(letra)) {
+					diccionario.put(letra,1);
+
+				}else {				
+				int valor =diccionario.get(letra)+1;
+//				diccionario.remove(letra);
+				diccionario.put(letra,valor);
+					
+				}
+				
+					
+				}
+
+			
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		
+		return diccionario;
 	}
 
 }
