@@ -1,5 +1,7 @@
 package org.madrid.ad.ut01.ficheros.interfaces;
 
+import java.util.HashMap;
+
 /**
  * 
  * @author Carlos Tessier
@@ -12,7 +14,7 @@ public interface InterfazFicherosTexto {
 
 	/**
 	 * 	
-	 * Método que lee un fichero txt	  
+	 * Mï¿½todo que lee un fichero txt	  
 	 *
 	 * @param rutaFichero
 	 */
@@ -20,7 +22,7 @@ public interface InterfazFicherosTexto {
 	
 	/**
 	 * 	
-	 * Método que cuenta en número de caracteres de un fichero txt	  
+	 * Mï¿½todo que cuenta en nï¿½mero de caracteres de un fichero txt	  
 	 *
 	 * @param rutaFichero
 	 */
@@ -29,7 +31,7 @@ public interface InterfazFicherosTexto {
 	
 	/**
 	 * 	
-	 * Método que cuenta en número de líneas de un fichero txt	  
+	 * Mï¿½todo que cuenta en nï¿½mero de lï¿½neas de un fichero txt	  
 	 *
 	 * @param rutaFichero
 	 */
@@ -37,7 +39,7 @@ public interface InterfazFicherosTexto {
 	
 	/**
 	 * 	
-	 * Método que cuenta en número de palabras de un fichero txt	  
+	 * Mï¿½todo que cuenta en nï¿½mero de palabras de un fichero txt	  
 	 *
 	 * @param rutaFichero
 	 */
@@ -45,7 +47,7 @@ public interface InterfazFicherosTexto {
 	
 	/**
 	 * 	
-	 * Método que cuenta y muestra el número total de palabras pentavocálicas 
+	 * Mï¿½todo que cuenta y muestra el nï¿½mero total de palabras pentavocï¿½licas 
 	 *
 	 * @param rutaFichero
 	 */
@@ -53,10 +55,10 @@ public interface InterfazFicherosTexto {
 	
 	/**
 	 * 	
-	 * Obtener y mostrar la palabra más larga, su número de letras y su posición
-	 *  (número de orden en la secuencia de palabras).
-	 *  Si hay más de una se toma la primera. 
-	 *  Nota: El número de orden o posición de la palabra en el texto es el lugar que ocupa,
+	 * Obtener y mostrar la palabra mï¿½s larga, su nï¿½mero de letras y su posiciï¿½n
+	 *  (nï¿½mero de orden en la secuencia de palabras).
+	 *  Si hay mï¿½s de una se toma la primera. 
+	 *  Nota: El nï¿½mero de orden o posiciï¿½n de la palabra en el texto es el lugar que ocupa,
 	 *  una vez contadas todas.   
 	 *
 	 * @param rutaFichero
@@ -65,18 +67,18 @@ public interface InterfazFicherosTexto {
 	
 	/**
 	 * 	
-	 * Método Obtener la frecuencia de las 5 vocales 
-	 * (número de veces que se repite cada vocal).  
+	 * Mï¿½todo Obtener la frecuencia de las 5 vocales 
+	 * (nï¿½mero de veces que se repite cada vocal).  
 	 *
 	 * @param rutaFichero
 	 */
 	
-	public int frecuenciaVocales(String rutaFichero);
+	public HashMap<Character,Integer> frecuenciaVocales(String rutaFichero);
 	
 
 	/**
 	 * 	
-	 * Método Obtener la frecuencia de las 27 letras del alfabeto 
+	 * Mï¿½todo Obtener la frecuencia de las 27 letras del alfabeto 
 	 * y muestra el resultado en orden descendente de frecuencia.  
 	 *
 	 * @param rutaFichero

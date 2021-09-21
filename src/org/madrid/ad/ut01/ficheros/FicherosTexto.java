@@ -3,6 +3,7 @@ package org.madrid.ad.ut01.ficheros;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 
 import org.madrid.ad.ut01.ficheros.interfaces.InterfazFicherosTexto;
@@ -41,29 +42,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public int palabrasPentavocalica(String rutaFichero) {
-		int num=0;
-		File archivo=new File(rutaFichero);
-		ArrayList<String> lista=new ArrayList<String>();
-		try {
-			BufferedReader br=new BufferedReader(new FileReader(archivo));
-			String linea=br.readLine();
-			while (linea!=null){
-				boolean contiene=true;
-				String[] palabras=linea.split(" ");
-				String[]vocales={"a","e","i","o","u"};
-				for (int i = 0; i < palabras.length; i++) {
-					for (String vocal:vocales) {
-						if(!palabras[i].contains(vocal))contiene=false;
-					}
-					if(contiene) lista.add(palabras[i]);
-				}
-				linea=br.readLine();
-			}
-			lista.forEach(System.out::println);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return num;
+		return 0;
 	}
 
 	@Override
@@ -73,11 +52,39 @@ public class FicherosTexto implements InterfazFicherosTexto {
 	}
 
 	@Override
-	public int frecuenciaVocales(String rutaFichero) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public HashMap<Character,Integer> frecuenciaVocales(String rutaFichero) {
+		HashMap<Character, Integer> diccionario = new HashMap<>();
+		int a = 0, e = 0, i = 0, o = 0, u = 0;
+		File fichero = new File(rutaFichero);
+		try (FileReader fr = new FileReader(fichero)) {
+			if (!fichero.exists()) {
+				System.out.println("El archivo no existe.");
+				return null;
+			}
 
+			while (true) {
+				int letraNumerica = fr.read();
+				if (letraNumerica == -1) break;
+				char letra = (char) letraNumerica;
+				if (letra == 'a' || letra=='A') a++;
+				if (letra == 'e' || letra=='E') e++;
+				if (letra == 'i' || letra=='I') i++;
+				if (letra == 'o' || letra=='O') o++;
+				if (letra == 'u' || letra=='U') u++;
+			}
+			diccionario.put('a',a);
+			diccionario.put('e',e);
+			diccionario.put('i',i);
+			diccionario.put('o',o);
+			diccionario.put('u',u);
+		} catch (IOException error) {
+
+			error.printStackTrace();
+		}
+
+
+		return diccionario;
+	}
 	@Override
 	public int frecuenciaLetras(String rutaFichero) {
 		// TODO Auto-generated method stub
