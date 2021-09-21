@@ -42,7 +42,35 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public int palabrasPentavocalica(String rutaFichero) {
-		return 0;
+		int num=0;
+		File archivo=new File(rutaFichero);
+		ArrayList<String> lista= new ArrayList<>();
+		try {
+			BufferedReader br=new BufferedReader(new FileReader(archivo));
+			String linea=br.readLine();
+			String lineamin=linea.toLowerCase();
+			while (lineamin!=null){
+				 lineamin=lineamin.toLowerCase();
+				boolean contiene=true;
+				String[] palabras=lineamin.split(" ");
+				String[]vocales={"a","e","i","o","u"};
+				for (int i = 0; i < palabras.length; i++) {
+					for (String vocal:vocales) {
+						if(!palabras[i].contains(vocal))
+						{
+							contiene=false;
+						}
+					}
+					if(contiene) lista.add(palabras[i]);
+					contiene=true;
+				}
+				lineamin=br.readLine();
+			}
+			num=lista.size();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return num;
 	}
 
 	@Override
@@ -53,37 +81,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public HashMap<Character,Integer> frecuenciaVocales(String rutaFichero) {
-		HashMap<Character, Integer> diccionario = new HashMap<>();
-		int a = 0, e = 0, i = 0, o = 0, u = 0;
-		File fichero = new File(rutaFichero);
-		try (FileReader fr = new FileReader(fichero)) {
-			if (!fichero.exists()) {
-				System.out.println("El archivo no existe.");
-				return null;
-			}
-
-			while (true) {
-				int letraNumerica = fr.read();
-				if (letraNumerica == -1) break;
-				char letra = (char) letraNumerica;
-				if (letra == 'a' || letra=='A') a++;
-				if (letra == 'e' || letra=='E') e++;
-				if (letra == 'i' || letra=='I') i++;
-				if (letra == 'o' || letra=='O') o++;
-				if (letra == 'u' || letra=='U') u++;
-			}
-			diccionario.put('a',a);
-			diccionario.put('e',e);
-			diccionario.put('i',i);
-			diccionario.put('o',o);
-			diccionario.put('u',u);
-		} catch (IOException error) {
-
-			error.printStackTrace();
-		}
-
-
-		return diccionario;
+		return null;
 	}
 	@Override
 	public int frecuenciaLetras(String rutaFichero) {
