@@ -1,8 +1,6 @@
 package org.madrid.ad.ut01.ficheros;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 
 import org.madrid.ad.ut01.ficheros.interfaces.InterfazFicherosTexto;
@@ -30,18 +28,8 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public int contarLineas(String rutaFichero) {
-		return  0;
-	}
-
-	@Override
-	public int contarPalabras(String rutaFichero) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int palabrasPentavocalica(String rutaFichero) {
 		int num=0;
+<<<<<<< HEAD
 		File archivo=new File(rutaFichero);
 <<<<<<< HEAD
 		ArrayList<String> lista= new ArrayList<>();
@@ -69,27 +57,37 @@ public class FicherosTexto implements InterfazFicherosTexto {
 			num=lista.size();
 =======
 		ArrayList<String> lista=new ArrayList<String>();
+=======
+		File fichero=new File(rutaFichero);
+>>>>>>> parent of 3ffb2dc (initial)
 		try {
-			BufferedReader br=new BufferedReader(new FileReader(archivo));
+			BufferedReader br=new BufferedReader(new FileReader(fichero));
 			String linea=br.readLine();
 			while (linea!=null){
-				boolean contiene=true;
-				String[] palabras=linea.split(" ");
-				String[]vocales={"a","e","i","o","u"};
-				for (int i = 0; i < palabras.length; i++) {
-					for (String vocal:vocales) {
-						if(!palabras[i].contains(vocal))contiene=false;
-					}
-					if(contiene) lista.add(palabras[i]);
-				}
+				num++;
 				linea=br.readLine();
 			}
+<<<<<<< HEAD
 			lista.forEach(System.out::println);
 >>>>>>> parent of 6746e87 (initial)
+=======
+>>>>>>> parent of 3ffb2dc (initial)
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return num;
+	}
+
+	@Override
+	public int contarPalabras(String rutaFichero) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int palabrasPentavocalica(String rutaFichero) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
