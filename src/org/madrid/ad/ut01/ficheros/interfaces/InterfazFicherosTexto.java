@@ -12,7 +12,7 @@ public interface InterfazFicherosTexto {
 
 	/**
 	 * 	
-	 * Método que lee un fichero txt	  
+	 * MÃ©todo que lee un fichero txt	  
 	 *
 	 * @param rutaFichero
 	 */
@@ -20,7 +20,7 @@ public interface InterfazFicherosTexto {
 	
 	/**
 	 * 	
-	 * Método que cuenta en número de caracteres de un fichero txt	  
+	 * MÃ©todo que cuenta en nÃºmero de caracteres de un fichero txt	  
 	 *
 	 * @param rutaFichero
 	 */
@@ -29,7 +29,7 @@ public interface InterfazFicherosTexto {
 	
 	/**
 	 * 	
-	 * Método que cuenta en número de líneas de un fichero txt	  
+	 * MÃ©todo que cuenta en nÃºmero de lÃ­neas de un fichero txt	  
 	 *
 	 * @param rutaFichero
 	 */
@@ -37,7 +37,7 @@ public interface InterfazFicherosTexto {
 	
 	/**
 	 * 	
-	 * Método que cuenta en número de palabras de un fichero txt	  
+	 * MÃ©todo que cuenta en nÃºmero de palabras de un fichero txt	  
 	 *
 	 * @param rutaFichero
 	 */
@@ -45,7 +45,7 @@ public interface InterfazFicherosTexto {
 	
 	/**
 	 * 	
-	 * Método que cuenta y muestra el número total de palabras pentavocálicas 
+	 * MÃ©todo que cuenta y muestra el nÃºmero total de palabras pentavocÃ¡licas 
 	 *
 	 * @param rutaFichero
 	 */
@@ -53,10 +53,10 @@ public interface InterfazFicherosTexto {
 	
 	/**
 	 * 	
-	 * Obtener y mostrar la palabra más larga, su número de letras y su posición
-	 *  (número de orden en la secuencia de palabras).
-	 *  Si hay más de una se toma la primera. 
-	 *  Nota: El número de orden o posición de la palabra en el texto es el lugar que ocupa,
+	 * Obtener y mostrar la palabra mÃ¡s larga, su nÃºmero de letras y su posiciÃ³n
+	 *  (nÃºmero de orden en la secuencia de palabras).
+	 *  Si hay mÃ¡s de una se toma la primera. 
+	 *  Nota: El nÃºmero de orden o posiciÃ³n de la palabra en el texto es el lugar que ocupa,
 	 *  una vez contadas todas.   
 	 *
 	 * @param rutaFichero
@@ -65,18 +65,18 @@ public interface InterfazFicherosTexto {
 	
 	/**
 	 * 	
-	 * Método Obtener la frecuencia de las 5 vocales 
-	 * (número de veces que se repite cada vocal).  
+	 * MÃ©todo Obtener la frecuencia de las 5 vocales 
+	 * (nÃºmero de veces que se repite cada vocal).  
 	 *
 	 * @param rutaFichero
 	 */
 	
-	public int frecuenciaVocales(String rutaFichero);
+	public HashMap<Character,Integer> frecuenciaVocales(String rutaFichero);
 	
 
 	/**
 	 * 	
-	 * Método Obtener la frecuencia de las 27 letras del alfabeto 
+	 * MÃ©todo Obtener la frecuencia de las 27 letras del alfabeto 
 	 * y muestra el resultado en orden descendente de frecuencia.  
 	 *
 	 * @param rutaFichero
