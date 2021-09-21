@@ -1,6 +1,7 @@
 package org.madrid.ad.ut01.ficheros;
 
 import java.io.*;
+import java.util.HashMap;
 
 
 import org.madrid.ad.ut01.ficheros.interfaces.InterfazFicherosTexto;
