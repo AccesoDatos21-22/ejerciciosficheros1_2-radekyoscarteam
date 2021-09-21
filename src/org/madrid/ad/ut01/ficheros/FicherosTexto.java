@@ -43,23 +43,29 @@ public class FicherosTexto implements InterfazFicherosTexto {
 	public int palabrasPentavocalica(String rutaFichero) {
 		int num=0;
 		File archivo=new File(rutaFichero);
-		ArrayList<String> lista=new ArrayList<String>();
+		ArrayList<String> lista= new ArrayList<>();
 		try {
 			BufferedReader br=new BufferedReader(new FileReader(archivo));
 			String linea=br.readLine();
-			while (linea!=null){
+			String lineamin=linea.toLowerCase();
+			while (lineamin!=null){
+				lineamin=lineamin.toLowerCase();
 				boolean contiene=true;
-				String[] palabras=linea.split(" ");
+				String[] palabras=lineamin.split(" ");
 				String[]vocales={"a","e","i","o","u"};
 				for (int i = 0; i < palabras.length; i++) {
 					for (String vocal:vocales) {
-						if(!palabras[i].contains(vocal))contiene=false;
+						if(!palabras[i].contains(vocal))
+						{
+							contiene=false;
+						}
 					}
 					if(contiene) lista.add(palabras[i]);
+					contiene=true;
 				}
-				linea=br.readLine();
+				lineamin=br.readLine();
 			}
-			lista.forEach(System.out::println);
+			num=lista.size();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
