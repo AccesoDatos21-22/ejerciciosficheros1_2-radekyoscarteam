@@ -28,54 +28,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public int contarLineas(String rutaFichero) {
-		int num=0;
-<<<<<<< HEAD
-		File archivo=new File(rutaFichero);
-<<<<<<< HEAD
-		ArrayList<String> lista= new ArrayList<>();
-		try {
-			BufferedReader br=new BufferedReader(new FileReader(archivo));
-			String linea=br.readLine();
-			String lineamin=linea.toLowerCase();
-			while (lineamin!=null){
-				 lineamin=lineamin.toLowerCase();
-				boolean contiene=true;
-				String[] palabras=lineamin.split(" ");
-				String[]vocales={"a","e","i","o","u"};
-				for (int i = 0; i < palabras.length; i++) {
-					for (String vocal:vocales) {
-						if(!palabras[i].contains(vocal))
-						{
-							contiene=false;
-						}
-					}
-					if(contiene) lista.add(palabras[i]);
-					contiene=true;
-				}
-				lineamin=br.readLine();
-			}
-			num=lista.size();
-=======
-		ArrayList<String> lista=new ArrayList<String>();
-=======
-		File fichero=new File(rutaFichero);
->>>>>>> parent of 3ffb2dc (initial)
-		try {
-			BufferedReader br=new BufferedReader(new FileReader(fichero));
-			String linea=br.readLine();
-			while (linea!=null){
-				num++;
-				linea=br.readLine();
-			}
-<<<<<<< HEAD
-			lista.forEach(System.out::println);
->>>>>>> parent of 6746e87 (initial)
-=======
->>>>>>> parent of 3ffb2dc (initial)
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return num;
+		return 0;
 	}
 
 	@Override
@@ -97,16 +50,38 @@ public class FicherosTexto implements InterfazFicherosTexto {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public HashMap<Character,Integer> frecuenciaVocales(String rutaFichero) {
-		return null;
-=======
-	public int frecuenciaVocales(String rutaFichero) {
-		// TODO Auto-generated method stub
-		return 0;
->>>>>>> parent of 6746e87 (initial)
-	}
+			int a=0,e=0,i=0,o=0,u=0;
+			HashMap<Character,Integer> diccionario= new HashMap<>();
+			File fichero = new File(rutaFichero);
+			try (FileReader fr = new FileReader(fichero)) {
+				if (!fichero.exists()) {
+					System.out.println("El archivo no existe.");
+					return null;
+				}
 
+				while (true) {
+					int letraNumerica = fr.read();
+					if (letraNumerica == -1) break;
+					char letra=(char)letraNumerica;
+					if (letra=='a' || letra=='A') a++;
+					if (letra=='e' || letra=='E') e++;
+					if (letra=='i' || letra=='I') i++;
+					if (letra=='o' || letra=='O') o++;
+					if (letra=='u' || letra=='U') u++;
+				}
+				diccionario.put('a',a);
+				diccionario.put('e',e);
+				diccionario.put('i',i);
+				diccionario.put('o',o);
+				diccionario.put('u',u);
+			} catch (IOException error) {
+
+				error.printStackTrace();
+			}
+			return diccionario;
+	}
+	
 	@Override
 	public int frecuenciaLetras(String rutaFichero) {
 		// TODO Auto-generated method stub
