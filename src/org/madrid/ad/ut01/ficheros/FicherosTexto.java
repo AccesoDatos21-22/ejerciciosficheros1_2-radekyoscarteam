@@ -5,25 +5,8 @@ import java.io.*;
 
 import org.madrid.ad.ut01.ficheros.interfaces.InterfazFicherosTexto;
 
-/**
- * 
- * @author Escribe_aqui_tu_nombre
- * @date
- * @version
- * @license GPLv3
- *
- */
+
 public class FicherosTexto implements InterfazFicherosTexto {
-
-	@Override
-	public void leer(String rutaFichero) {
-	}
-
-	@Override
-	public int contarCaracteres(String rutaFichero) {
-		return 0;
-	}
-
 
 
 	@Override
@@ -43,34 +26,5 @@ public class FicherosTexto implements InterfazFicherosTexto {
 		return num;
 	}
 
-	@Override
-	public int contarPalabras(String rutaFichero) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int palabrasPentavocalica(String rutaFichero) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int palabraMasLarga(String rutaFichero) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int frecuenciaVocales(String rutaFichero) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int frecuenciaLetras(String rutaFichero) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }
