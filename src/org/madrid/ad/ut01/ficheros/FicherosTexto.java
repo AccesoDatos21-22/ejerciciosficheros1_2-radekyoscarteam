@@ -25,126 +25,236 @@ import org.madrid.ad.ut01.ficheros.interfaces.InterfazFicherosTexto;
 public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
-		public int contarPalabras(String rutaFichero) {
-			File file = new File(rutaFichero);
-			String linea;
-			int num = 0;
-			try (BufferedReader fr = new BufferedReader(new FileReader(file))) {
-				if (!file.exists()) {
-					System.out.println("El fichero no existe");
-					return 0;
-				}
-				while (true) {
-					linea = fr.readLine();
-					if (linea == null)
-						return num;
-					String[] lineaAux = linea.split(" ");
-					for (String palabra : lineaAux) {
-						num++;
-					}
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			return num;
-
-		}
-
-		public int palabrasPentavocalica(String rutaFichero) {
-			int num = 0;
-			File archivo = new File(rutaFichero);
-			ArrayList<String> lista = new ArrayList<>();
-			try {
-				BufferedReader br = new BufferedReader(new FileReader(archivo));
-				String linea = br.readLine();
-				String lineamin = linea.toLowerCase();
-				while (lineamin != null) {
-					lineamin = lineamin.toLowerCase();
-					boolean contiene = true;
-					String[] palabras = lineamin.split(" ");
-					String[] vocales = { "a", "e", "i", "o", "u" };
-					for (int i = 0; i < palabras.length; i++) {
-						for (String vocal : vocales) {
-							if (!palabras[i].contains(vocal)) {
-								contiene = false;
-							}
-						}
-						if (contiene)
-							lista.add(palabras[i]);
-						contiene = true;
-					}
-					lineamin = br.readLine();
-				}
-				num = lista.size();
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			return num;
-
-		}
-
-		@Override
-		public HashMap<Character, Integer> frecuenciaLetras(String rutaFichero) {
-			HashMap<Character, Integer> diccionario = new HashMap<Character, Integer>();
-			File fichero = new File(rutaFichero);
-			try (FileReader fr = new FileReader(fichero)) {
-				if (!fichero.exists()) {
-					System.out.println("El archivo no existe.");
-					return null;
-				}
-
-				while (true) {
-					int letraNumerica = fr.read();
-					if (letraNumerica == -1)
-						break;
-					char letra = (char) letraNumerica;
-					if (letra >= 'a' && letra <= 'z') {
-						if (!diccionario.containsKey(letra)) {
-							diccionario.put(letra, 1);
-
-						} else {
-							int valor = diccionario.get(letra) + 1;
-//				diccionario.remove(letra);
-							diccionario.put(letra, valor);
-						}
-
-					}
-
-				}
-
-			} catch (IOException f) {
-
-				f.printStackTrace();
-			}
-
-			return diccionario;
-		}
-
-		public void leer(String rutaFichero) {
-
-			File fichero = new File(rutaFichero);
-			try (FileReader fr = new FileReader(fichero)) {
-				if (!fichero.exists()) {
-					System.out.println("El archivo no existe.");
-					return;
-				}
-
+	public int contarCaracteres(String rutaFichero) {
+		int num = 0;
+		File fichero = new File(rutaFichero);
+		try {
+			FileReader fr = new FileReader(fichero);
+			if (!fichero.exists()) {
+				System.out.println("El fichero no existe");
+			} else {
 				while (true) {
 					int letra = fr.read();
 					if (letra == -1)
-						break; // Si devuelve -1 significa que no quedan caracteres por leer
-					System.out.print((char) letra);
-
+						break; //// Si devuelve -1 significa que no quedan caracteres por leer
+					num++;
 				}
-			} catch (IOException e) {
-
-				e.printStackTrace();
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return num;
+	}
 
+	@Override
+	public int contarPalabras(String rutaFichero) {
+		File file = new File(rutaFichero);
+		String linea;
+		int num = 0;
+		try (BufferedReader fr = new BufferedReader(new FileReader(file))) {
+			if (!file.exists()) {
+				System.out.println("El fichero no existe");
+				return 0;
+			}
+			while (true) {
+				linea = fr.readLine();
+				if (linea == null)
+					return num;
+				String[] lineaAux = linea.split(" ");
+				for (String palabra : lineaAux) {
+					num++;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
-	
+		return num;
+
+	}
+
+	@Override
+	public int contarLineas(String rutaFichero) {
+		int num = 0;
+		File fichero = new File(rutaFichero);
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fichero));
+			String linea = br.readLine();
+			while (linea != null) {
+				num++;
+				linea = br.readLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return num;
+	}
+
+	@Override
+	public int palabrasPentavocalica(String rutaFichero) {
+		int num = 0;
+		File archivo = new File(rutaFichero);
+		ArrayList<String> lista = new ArrayList<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(archivo));
+			String linea = br.readLine();
+			String lineamin = linea.toLowerCase();
+			while (lineamin != null) {
+				lineamin = lineamin.toLowerCase();
+				boolean contiene = true;
+				String[] palabras = lineamin.split(" ");
+				String[] vocales = { "a", "e", "i", "o", "u" };
+				for (int i = 0; i < palabras.length; i++) {
+					for (String vocal : vocales) {
+						if (!palabras[i].contains(vocal)) {
+							contiene = false;
+						}
+					}
+					if (contiene)
+						lista.add(palabras[i]);
+					contiene = true;
+				}
+				lineamin = br.readLine();
+			}
+			num = lista.size();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return num;
+
+	}
+
+	@Override
+	public String palabraMasLarga(String rutaFichero) {
+		File file = new File(rutaFichero);
+		String linea, palabraIntermedia = "";
+
+		try (BufferedReader fr = new BufferedReader(new FileReader(file))) {
+			if (!file.exists()) {
+				System.out.println("El fichero no existe");
+				return palabraIntermedia;
+			}
+
+			while (true) {
+				linea = fr.readLine();
+				if (linea == null)
+					return palabraIntermedia;
+				String[] lineaAux = linea.split("\\s|\\.|,");
+				for (String palabra : lineaAux) {
+					if (palabraIntermedia == null)
+						palabraIntermedia = palabra;
+					if (palabraIntermedia.length() <= palabra.length())
+						palabraIntermedia = palabra;
+				}
+
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return palabraIntermedia;
+	}
+
+	@Override
+	public HashMap<Character, Integer> frecuenciaVocales(String rutaFichero) {
+		int a = 0, e = 0, i = 0, o = 0, u = 0;
+		HashMap<Character, Integer> diccionario = new HashMap<>();
+		File fichero = new File(rutaFichero);
+		try (FileReader fr = new FileReader(fichero)) {
+			if (!fichero.exists()) {
+				System.out.println("El archivo no existe.");
+				return null;
+			}
+
+			while (true) {
+				int letraNumerica = fr.read();
+				if (letraNumerica == -1)
+					break;
+				char letra = (char) letraNumerica;
+				if (letra == 'a' || letra == 'A')
+					a++;
+				if (letra == 'e' || letra == 'E')
+					e++;
+				if (letra == 'i' || letra == 'I')
+					i++;
+				if (letra == 'o' || letra == 'O')
+					o++;
+				if (letra == 'u' || letra == 'U')
+					u++;
+			}
+			diccionario.put('a', a);
+			diccionario.put('e', e);
+			diccionario.put('i', i);
+			diccionario.put('o', o);
+			diccionario.put('u', u);
+		} catch (IOException error) {
+
+			error.printStackTrace();
+		}
+		return diccionario;
+	}
+
+	@Override
+	public HashMap<Character, Integer> frecuenciaLetras(String rutaFichero) {
+		HashMap<Character, Integer> diccionario = new HashMap<Character, Integer>();
+		File fichero = new File(rutaFichero);
+		try (FileReader fr = new FileReader(fichero)) {
+			if (!fichero.exists()) {
+				System.out.println("El archivo no existe.");
+				return null;
+			}
+
+			while (true) {
+				int letraNumerica = fr.read();
+				if (letraNumerica == -1)
+					break;
+				char letra = (char) letraNumerica;
+				if (letra >= 'a' && letra <= 'z') {
+					if (!diccionario.containsKey(letra)) {
+						diccionario.put(letra, 1);
+
+					} else {
+						int valor = diccionario.get(letra) + 1;
+//				diccionario.remove(letra);
+						diccionario.put(letra, valor);
+					}
+
+				}
+
+			}
+
+		} catch (IOException f) {
+
+			f.printStackTrace();
+		}
+
+		return diccionario;
+	}
+
+	public void leer(String rutaFichero) {
+
+		File fichero = new File(rutaFichero);
+		try (FileReader fr = new FileReader(fichero)) {
+			if (!fichero.exists()) {
+				System.out.println("El archivo no existe.");
+				return;
+			}
+
+			while (true) {
+				int letra = fr.read();
+				if (letra == -1)
+					break; // Si devuelve -1 significa que no quedan caracteres por leer
+				System.out.print((char) letra);
+
+			}
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
 }
