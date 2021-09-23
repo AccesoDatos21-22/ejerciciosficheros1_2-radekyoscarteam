@@ -34,6 +34,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 				int letraNumerica = fr.read();
 				if (letraNumerica == -1) break;
 				char letra=(char)letraNumerica;
+				if(letra>='a' && letra<='z') {
 				if(!diccionario.containsKey(letra)) {
 					diccionario.put(letra,1);
 
@@ -41,6 +42,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 				int valor =diccionario.get(letra)+1;
 //				diccionario.remove(letra);
 				diccionario.put(letra,valor);
+				}
 					
 				}
 				
@@ -56,5 +58,49 @@ public class FicherosTexto implements InterfazFicherosTexto {
 		
 		return diccionario;
 	}
+
+	@Override
+	public void leer(String rutaFichero) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int contarCaracteres(String rutaFichero) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int contarLineas(String rutaFichero) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int contarPalabras(String rutaFichero) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int palabrasPentavocalica(String rutaFichero) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int palabraMasLarga(String rutaFichero) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int frecuenciaVocales(String rutaFichero) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 }
