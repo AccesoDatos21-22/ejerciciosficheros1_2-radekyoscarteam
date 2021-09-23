@@ -98,6 +98,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 				int letraNumerica = fr.read();
 				if (letraNumerica == -1) break;
 				char letra=(char)letraNumerica;
+				if(letra>='a' && letra<='z') {
 				if(!diccionario.containsKey(letra)) {
 					diccionario.put(letra,1);
 
@@ -105,6 +106,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 				int valor =diccionario.get(letra)+1;
 //				diccionario.remove(letra);
 				diccionario.put(letra,valor);
+				}
 					
 				}
 				
@@ -120,7 +122,6 @@ public class FicherosTexto implements InterfazFicherosTexto {
 		
 		return diccionario;
 	}
-
 	public void leer(String rutaFichero) {
 
 		File fichero = new File(rutaFichero);
