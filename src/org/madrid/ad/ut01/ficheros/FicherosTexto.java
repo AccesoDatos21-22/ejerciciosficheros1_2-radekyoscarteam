@@ -36,7 +36,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 				while (true) {
 					int letra = fr.read();
 					if (letra == -1)
-						break; //// Si devuelve -1 significa que no quedan caracteres por leer
+						return -1; //// Si devuelve -1 significa que no quedan caracteres por leer
 					num++;
 				}
 			}
@@ -54,7 +54,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 		try (BufferedReader fr = new BufferedReader(new FileReader(file))) {
 			if (!file.exists()) {
 				System.out.println("El fichero no existe");
-				return 0;
+				return -1;
 			}
 			while (true) {
 				linea = fr.readLine();
@@ -133,7 +133,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 		try (BufferedReader fr = new BufferedReader(new FileReader(file))) {
 			if (!file.exists()) {
 				System.out.println("El fichero no existe");
-				return 0;
+				return -1;
 			}
 			
 			linea="";
@@ -262,7 +262,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 		try (FileReader fr = new FileReader(fichero)) {
 			if (!fichero.exists()) {
 				System.out.println("El archivo no existe.");
-				return 0;
+				return -1;
 			}
 
 			while (true) {
@@ -302,7 +302,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 		try (FileReader fr = new FileReader(fichero)) {
 			if (!fichero.exists()) {
 				System.out.println("El archivo no existe.");
-				return 0;
+				return -1;
 			}
 
 			while (true) {
