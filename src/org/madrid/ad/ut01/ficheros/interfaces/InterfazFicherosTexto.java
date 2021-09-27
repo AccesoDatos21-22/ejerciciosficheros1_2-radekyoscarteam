@@ -1,7 +1,5 @@
 package org.madrid.ad.ut01.ficheros.interfaces;
 
-import java.util.HashMap;
-
 /**
  * 
  * @author Carlos Tessier
@@ -63,7 +61,7 @@ public interface InterfazFicherosTexto {
 	 *
 	 * @param rutaFichero
 	 */
-	public String palabraMasLarga(String rutaFichero);
+	public int palabraMasLarga(String rutaFichero);
 	
 	/**
 	 * 	
@@ -73,7 +71,7 @@ public interface InterfazFicherosTexto {
 	 * @param rutaFichero
 	 */
 	
-	public HashMap<Character,Integer> frecuenciaVocales(String rutaFichero);
+	public int frecuenciaVocales(String rutaFichero);
 	
 
 	/**
@@ -83,7 +81,7 @@ public interface InterfazFicherosTexto {
 	 *
 	 * @param rutaFichero
 	 */
-	public HashMap<Character,Integer> frecuenciaLetras(String rutaFichero);
+	public int frecuenciaLetras(String rutaFichero);
 	
 	
 	
