@@ -224,68 +224,84 @@ public String palabraMasLarga(String rutaFichero) {
 ## Ejercicio 9
 En este ejercicio utilizaremos un HashMap para guardar el numero de veces que ha aparecido una vocal en el texto. Utilizaremos un FileReader para leer caracter a caracter, y comprobaremos si el caracter sobre el que nos encontramos se corresponde con alguna de las vocales.
 ```javascript
-public HashMap<Character,Integer> frecuenciaVocales(String rutaFichero) {
-			int a=0,e=0,i=0,o=0,u=0;
-			HashMap<Character,Integer> diccionario= new HashMap<>();
-			File fichero = new File(rutaFichero);
-			try (FileReader fr = new FileReader(fichero)) {
-				if (!fichero.exists()) {
-					System.out.println("El archivo no existe.");
-					return null;
-				}
-
-				while (true) {
-					int letraNumerica = fr.read();
-					if (letraNumerica == -1) break;
-					char letra=(char)letraNumerica;
-					if (letra=='a' || letra=='A') a++;
-					if (letra=='e' || letra=='E') e++;
-					if (letra=='i' || letra=='I') i++;
-					if (letra=='o' || letra=='O') o++;
-					if (letra=='u' || letra=='U') u++;
-				}
-				diccionario.put('a',a);
-				diccionario.put('e',e);
-				diccionario.put('i',i);
-				diccionario.put('o',o);
-				diccionario.put('u',u);
-			} catch (IOException error) {
-
-				error.printStackTrace();
+public int frecuenciaVocales(String rutaFichero) {
+		int a = 0, e = 0, i = 0, o = 0, u = 0;
+		HashMap<Character, Integer> diccionario = new HashMap<>();
+		File fichero = new File(rutaFichero);
+		try (FileReader fr = new FileReader(fichero)) {
+			if (!fichero.exists()) {
+				System.out.println("El archivo no existe.");
+				return -1;
 			}
-			return diccionario;
+
+			while (true) {
+				int letraNumerica = fr.read();
+				if (letraNumerica == -1)
+					break;
+				char letra = (char) letraNumerica;
+				if (letra == 'a' || letra == 'A')
+					a++;
+				if (letra == 'e' || letra == 'E')
+					e++;
+				if (letra == 'i' || letra == 'I')
+					i++;
+				if (letra == 'o' || letra == 'O')
+					o++;
+				if (letra == 'u' || letra == 'U')
+					u++;
+			}
+			diccionario.put('a', a);
+			diccionario.put('e', e);
+			diccionario.put('i', i);
+			diccionario.put('o', o);
+			diccionario.put('u', u);
+		} catch (IOException error) {
+
+			error.printStackTrace();
+		}
+		diccionario.forEach((k,v)->System.out.println("Vocal: "+k+", valor: "+ v));
+
+		return 0;
 	}
 ```
 ## Ejercicio 10
 Similar al ejercicio anterior, crearemos un HashMap que guarde todas las letras del abecedario y cuente el numero de veces que aparece cada una de ellas en el texto.
 ```javascript
-public HashMap<Character,Integer> frecuenciaLetras(String rutaFichero) {
-		HashMap<Character,Integer> diccionario=new HashMap<Character, Integer>();
+public int frecuenciaLetras(String rutaFichero) {
+		HashMap<Character, Integer> diccionario = new HashMap<Character, Integer>();
 		File fichero = new File(rutaFichero);
 		try (FileReader fr = new FileReader(fichero)) {
 			if (!fichero.exists()) {
 				System.out.println("El archivo no existe.");
-				return null;
+				return -1;
 			}
-			
+
 			while (true) {
 				int letraNumerica = fr.read();
-				if (letraNumerica == -1) break;
-				char letra=(char)letraNumerica;
-				if(letra>='a' && letra<='z') {
-				if(!diccionario.containsKey(letra)) {
-					diccionario.put(letra,1);
+				if (letraNumerica == -1)
+					break;
+				char letra = (char) letraNumerica;
+				
+				if ((letra >= 'a' && letra <= 'z') || (letra >= 'A' && letra <= 'Z')  ) {
+					letra=Character.toLowerCase(letra);
+					if (!diccionario.containsKey(letra)) {
+						diccionario.put(letra, 1);
 
-				}else {				
-				int valor =diccionario.get(letra)+1;
-				diccionario.put(letra,valor);
+					} else {
+						int valor = diccionario.get(letra) + 1;
+						diccionario.put(letra, valor);
+						
+					}
+
 				}
-				}
-				}
-			
+
+			}
+
 		} catch (IOException f) {
+
 			f.printStackTrace();
 		}
-		return diccionario;
+		diccionario.forEach((k,v)->System.out.println("Letra: "+k+", valor: "+ v));
+		return 0;
 	}
 ```
