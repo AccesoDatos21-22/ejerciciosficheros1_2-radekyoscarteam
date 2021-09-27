@@ -125,22 +125,20 @@ public class FicherosTexto implements InterfazFicherosTexto {
 		return num;
 
 	}
-
 	@Override
-	public String palabraMasLarga(String rutaFichero) {
+	public int palabraMasLarga(String rutaFichero) {
 		File file = new File(rutaFichero);
 		String linea, palabraIntermedia = "";
 
 		try (BufferedReader fr = new BufferedReader(new FileReader(file))) {
 			if (!file.exists()) {
 				System.out.println("El fichero no existe");
-				return palabraIntermedia;
+				return 0;
 			}
-
-			while (true) {
-				linea = fr.readLine();
-				if (linea == null)
-					return palabraIntermedia;
+			
+			linea="";
+			while (linea != null) {
+				
 				String[] lineaAux = linea.split("\\s|\\.|,");
 				for (String palabra : lineaAux) {
 					if (palabraIntermedia == null)
@@ -148,18 +146,18 @@ public class FicherosTexto implements InterfazFicherosTexto {
 					if (palabraIntermedia.length() <= palabra.length())
 						palabraIntermedia = palabra;
 				}
-
+				linea = fr.readLine();
 			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		return palabraIntermedia;
+		System.out.println("Larga: "+ palabraIntermedia);
+		return 0;
 	}
 
-	@Override
-	public HashMap<Character, Integer> frecuenciaVocales(String rutaFichero) {
+	
+	public HashMap<Character, Integer> frecuenciaVocalesConHashMap(String rutaFichero) {
 		int a = 0, e = 0, i = 0, o = 0, u = 0;
 		HashMap<Character, Integer> diccionario = new HashMap<>();
 		File fichero = new File(rutaFichero);
@@ -197,8 +195,7 @@ public class FicherosTexto implements InterfazFicherosTexto {
 		return diccionario;
 	}
 
-	@Override
-	public HashMap<Character, Integer> frecuenciaLetras(String rutaFichero) {
+	public HashMap<Character, Integer> frecuenciaLetrasConHashMap(String rutaFichero) {
 		HashMap<Character, Integer> diccionario = new HashMap<Character, Integer>();
 		File fichero = new File(rutaFichero);
 		try (FileReader fr = new FileReader(fichero)) {
@@ -212,14 +209,15 @@ public class FicherosTexto implements InterfazFicherosTexto {
 				if (letraNumerica == -1)
 					break;
 				char letra = (char) letraNumerica;
+				
 				if (letra >= 'a' && letra <= 'z') {
 					if (!diccionario.containsKey(letra)) {
 						diccionario.put(letra, 1);
 
 					} else {
 						int valor = diccionario.get(letra) + 1;
-//				diccionario.remove(letra);
 						diccionario.put(letra, valor);
+						
 					}
 
 				}
@@ -230,7 +228,6 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 			f.printStackTrace();
 		}
-
 		return diccionario;
 	}
 
@@ -239,15 +236,13 @@ public class FicherosTexto implements InterfazFicherosTexto {
 		File fichero = new File(rutaFichero);
 		try (FileReader fr = new FileReader(fichero)) {
 			if (!fichero.exists()) {
-				System.out.println("El archivo no existe.");
+				System.err.println("El archivo no existe.");
 				return;
 			}
-
-			while (true) {
-				int letra = fr.read();
-				if (letra == -1)
-					break; // Si devuelve -1 significa que no quedan caracteres por leer
+			int letra=fr.read();
+			while (letra != -1) {
 				System.out.print((char) letra);
+				letra=fr.read();
 
 			}
 		} catch (IOException e) {
@@ -255,6 +250,89 @@ public class FicherosTexto implements InterfazFicherosTexto {
 			e.printStackTrace();
 		}
 
+	}
+
+
+
+	@Override
+	public int frecuenciaVocales(String rutaFichero) {
+		int a = 0, e = 0, i = 0, o = 0, u = 0;
+		HashMap<Character, Integer> diccionario = new HashMap<>();
+		File fichero = new File(rutaFichero);
+		try (FileReader fr = new FileReader(fichero)) {
+			if (!fichero.exists()) {
+				System.out.println("El archivo no existe.");
+				return 0;
+			}
+
+			while (true) {
+				int letraNumerica = fr.read();
+				if (letraNumerica == -1)
+					break;
+				char letra = (char) letraNumerica;
+				if (letra == 'a' || letra == 'A')
+					a++;
+				if (letra == 'e' || letra == 'E')
+					e++;
+				if (letra == 'i' || letra == 'I')
+					i++;
+				if (letra == 'o' || letra == 'O')
+					o++;
+				if (letra == 'u' || letra == 'U')
+					u++;
+			}
+			diccionario.put('a', a);
+			diccionario.put('e', e);
+			diccionario.put('i', i);
+			diccionario.put('o', o);
+			diccionario.put('u', u);
+		} catch (IOException error) {
+
+			error.printStackTrace();
+		}
+		diccionario.forEach((k,v)->System.out.println("Vocal: "+k+", valor: "+ v));
+
+		return 0;
+	}
+
+	@Override
+	public int frecuenciaLetras(String rutaFichero) {
+		HashMap<Character, Integer> diccionario = new HashMap<Character, Integer>();
+		File fichero = new File(rutaFichero);
+		try (FileReader fr = new FileReader(fichero)) {
+			if (!fichero.exists()) {
+				System.out.println("El archivo no existe.");
+				return 0;
+			}
+
+			while (true) {
+				int letraNumerica = fr.read();
+				if (letraNumerica == -1)
+					break;
+				char letra = (char) letraNumerica;
+				
+				if ((letra >= 'a' && letra <= 'z') || (letra >= 'A' && letra <= 'Z')  ) {
+					letra=Character.toLowerCase(letra);
+					if (!diccionario.containsKey(letra)) {
+						diccionario.put(letra, 1);
+
+					} else {
+						int valor = diccionario.get(letra) + 1;
+//				diccionario.remove(letra);
+						diccionario.put(letra, valor);
+						
+					}
+
+				}
+
+			}
+
+		} catch (IOException f) {
+
+			f.printStackTrace();
+		}
+		diccionario.forEach((k,v)->System.out.println("Letra: "+k+", valor: "+ v));
+		return 0;
 	}
 
 }
